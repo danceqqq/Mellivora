@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mellivora – iPad Overlay</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ipadBox">
+    <button class="powerButton" onclick="powerMe();" type="button">I</button>
+    <div class="ipadScreen">
+      <div class="wallpaper">
+        <div class="statusBar"></div>
+        <div class="homeIcons" id="homeIcons">
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="mellivora" data-url="" title="Mellivora" style="background-image: url('icon/mellivora.jpg');"></div>
+            <span class="home-app-label">Mellivora</span>
+          </div>
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="fletcherwiki" data-url="https://fletcher-wiki.com/" title="Fletcher Wiki" style="background-image: url('icon/fletcherwiki.png');"></div>
+            <span class="home-app-label">Fletcher Wiki</span>
+          </div>
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="majesticwiki" data-url="https://wiki.majestic-rp.ru/ru" title="Majestic Wiki" style="background-image: url('icon/majesticwiki.jpg');"></div>
+            <span class="home-app-label">Majestic Wiki</span>
+          </div>
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="settings" data-url="settings://" title="Настройки" style="background-image: url('icon/settings.png');"></div>
+            <span class="home-app-label">Настройки</span>
+          </div>
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="github" data-url="https://github.com/danceqqq/Mellivora" title="GitHub" style="background-image: url('icon/github.jpg');"></div>
+            <span class="home-app-label">GitHub</span>
+          </div>
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="notes" data-url="notes://" title="Заметки" style="background-image: url('icon/notes.png');"></div>
+            <span class="home-app-label">Заметки</span>
+          </div>
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="automatic" data-url="automatic://" title="Automatic" style="background-image: url('icon/Automatic.png');"></div>
+            <span class="home-app-label">Automatic</span>
+          </div>
+          <div class="home-app-wrap">
+            <div class="home-app" data-app="shazam" data-url="shazam://" title="Shazam" style="background-image: url('icon/shazam.svg');"></div>
+            <span class="home-app-label">Shazam</span>
+          </div>
+        </div>
+        <div class="dockWrapper">
+          <div class="dockbar">
+            <div class="iconDiv" onclick="window.barColor='white';iconClick(event);">
+              <div class="imgDiv"></div>
+            </div>
+            <div class="iconDiv" onclick="window.barColor='white';iconClick(event);">
+              <div class="imgDiv"></div>
+            </div>
+            <div class="iconDiv" onclick="window.barColor='black';iconClick(event);">
+              <div class="imgDiv"></div>
+            </div>
+            <div class="iconDivide"></div>
+            <div class="iconDiv" onclick="window.barColor='black';iconFClick(event);">
+              <div class="imgDiv"></div>
+            </div>
+            <div class="iconDiv" data-action="screenshot" onclick="handleDockIconClick(event, 'screenshot');">
+              <div class="imgDiv"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lockScreen" onclick="lockClick();">
+        <div class="lockContent">
+          <div class="statusBar"></div>
+          <div class="lockIcon"></div>
+          <div class="lockTime">9:41<br />Saturday, August 17</div>
+        </div>
+        <div class="interactionBar"></div>
+      </div>
+      <div class="appView" id="appView">
+        <iframe id="appFrame" title="App"></iframe>
+      </div>
+      <div class="settingsView" id="settingsView">
+        <div class="settings-content">
+          <h2 class="settings-title">Обои</h2>
+          <div class="settings-wallpaper-grid" id="settingsWallpaperGrid">
+            <div class="settings-add-wallpaper" id="settingsAddWallpaper" title="Выбрать свой файл">+</div>
+          </div>
+          <div class="settings-shazam">
+            <h3 class="settings-subtitle">Shazam</h3>
+            <label>API ключ AudD: <input type="password" id="settingsAuddToken" placeholder="Получить на audd.io" /></label>
+          </div>
+        </div>
+      </div>
+      <div class="notesView" id="notesView">
+        <div class="notes-content">
+          <h2 class="notes-title">Заметки</h2>
+          <div class="notes-list" id="notesList"></div>
+          <button class="notes-add-btn" id="notesAddBtn" type="button">+</button>
+        </div>
+        <div class="notes-editor" id="notesEditor" style="display:none;">
+          <input type="text" class="notes-editor-title" id="notesEditorTitle" placeholder="Заголовок" />
+          <textarea class="notes-editor-content" id="notesEditorContent" placeholder="Текст заметки..."></textarea>
+          <div class="notes-editor-actions">
+            <button class="notes-editor-delete" id="notesEditorDelete" type="button">Удалить</button>
+            <button class="notes-editor-back" id="notesEditorBack" type="button">Назад</button>
+          </div>
+        </div>
+      </div>
+      <div class="shazamView" id="shazamView">
+        <div class="shazam-bg"></div>
+        <div class="shazam-content">
+          <h2 class="shazam-title">Shazam</h2>
+          <div class="shazam-main">
+            <div class="shazam-outer-circle shazam-outer-circle-1"></div>
+            <div class="shazam-outer-circle shazam-outer-circle-2"></div>
+            <button type="button" class="shazam-logo-btn" id="shazamLogoBtn" aria-label="Сканировать музыку">
+              <img src="icon/shazam.svg" alt="" class="shazam-logo-img" />
+            </button>
+          </div>
+          <p class="shazam-hint" id="shazamHint">Нажмите, чтобы найти музыку</p>
+          <div class="shazam-result" id="shazamResult" style="display:none;">
+            <img class="shazam-result-cover" id="shazamResultCover" src="" alt="" />
+            <h3 class="shazam-result-title" id="shazamResultTitle"></h3>
+            <p class="shazam-result-artist" id="shazamResultArtist"></p>
+            <div class="shazam-result-links" id="shazamResultLinks"></div>
+            <button type="button" class="shazam-btn-again" id="shazamBtnAgain">Сканировать ещё</button>
+          </div>
+          <div class="shazam-history" id="shazamHistory">
+            <h3 class="shazam-history-title">История</h3>
+            <div class="shazam-history-list" id="shazamHistoryList"></div>
+          </div>
+        </div>
+      </div>
+      <div class="automaticView" id="automaticView">
+        <div class="automatic-content">
+          <h2 class="automatic-title">Automatic</h2>
+          <div class="automatic-cards" id="automaticCards">
+            <div class="automatic-card" id="automaticCardOrange" data-card="orange">
+              <div class="automatic-card-header" onclick="toggleAutomaticCard('orange');">
+                <span class="automatic-card-title">Автосбор Апельсинов</span>
+                <span class="automatic-card-toggle">▼</span>
+              </div>
+              <div class="automatic-card-body">
+                <p class="automatic-card-desc">Проверяет координаты на целевые цвета и кликает при совпадении.</p>
+                <div class="automatic-orange-controls">
+                  <button type="button" class="automatic-btn" id="automaticOrangeStart">▶ Запустить</button>
+                  <button type="button" class="automatic-btn" id="automaticOrangeStop" style="display:none;">■ Остановить</button>
+                  <button type="button" class="automatic-btn" id="automaticAddCoord" title="Добавить текущую позицию курсора">+ Добавить точку</button>
+                </div>
+                <div class="automatic-params">
+                  <label>Задержка между кликами (сек): <input type="text" id="automaticClickDelay" value="0.5" /></label>
+                  <label>Время перемещения мыши (сек): <input type="text" id="automaticMoveDuration" value="0.3" /></label>
+                </div>
+                <div class="automatic-status" id="automaticOrangeStatus">Остановлено</div>
+                <div class="automatic-stats" id="automaticOrangeStats"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="interactionBar" id="inAppBar" onclick="goHome();"></div>
+    </div>
+  </div>
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <script src="ipad-ui.js"></script>
+</body>
+</html>

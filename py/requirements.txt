@@ -1,0 +1,6 @@
+pynput>=1.7.6
+pyautogui>=0.9.54
+PyAudioWPatch>=0.2.12.8
+ShazamAPI>=0.0.2
+pydub>=1.0.0
+audioop-lts>=0.2.0

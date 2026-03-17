@@ -1,0 +1,16 @@
+{
+  "notes": [
+    {
+      "id": 1773566080349,
+      "title": "Another tested",
+      "content": "Еще одна",
+      "createdAt": "2026-03-15T09:14:42.080Z"
+    },
+    {
+      "id": 1773566065632,
+      "title": "Test Notes",
+      "content": "Тестовая заметка",
+      "createdAt": "2026-03-15T09:14:26.932Z"
+    }
+  ]
+}
